@@ -233,7 +233,7 @@ export function RecipeForm({ initialData }: RecipeFormProps) {
 
                 <div>
                     <div className="flex items-center justify-between mb-2">
-                        <FormLabel>Ingredients</FormLabel>
+                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ingredients</label>
                         <Button type="button" variant="outline" size="sm" onClick={() => append({ value: "" })}>
                             <Plus className="h-4 w-4 mr-1" /> Add
                         </Button>
@@ -260,7 +260,11 @@ export function RecipeForm({ initialData }: RecipeFormProps) {
                             />
                         ))}
                     </div>
-                    <FormMessage>{form.formState.errors.ingredients?.message || form.formState.errors.ingredients?.root?.message}</FormMessage>
+                    {form.formState.errors.ingredients && (
+                        <p className="text-sm font-medium text-destructive mt-2">
+                            {form.formState.errors.ingredients.message || form.formState.errors.ingredients.root?.message}
+                        </p>
+                    )}
                 </div>
 
                 <FormField
